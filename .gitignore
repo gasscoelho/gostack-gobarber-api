@@ -1,0 +1,14 @@
+# Dependencies
+node_modules
+
+# Enviroments Variables
+.env
+
+# Temp Files
+tmp/*
+!tmp/.gitkeep
+
+#
+.idea/
+.vscode/
+build/
