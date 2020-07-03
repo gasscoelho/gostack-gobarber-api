@@ -20,6 +20,7 @@
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
+    "no-underscore-dangle": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -27,6 +28,11 @@
       }
     ],
     "@typescript-eslint/camelcase": "off",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/interface-name-prefix": [
+      "error",
+      { "prefixWithI": "always" }
+    ],
     "class-methods-use-this": "off",
     "prettier/prettier": "error",
     "import/extensions": [
