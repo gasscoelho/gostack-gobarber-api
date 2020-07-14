@@ -47,7 +47,7 @@ class App {
   private middlewares(): void {
     this.server.use(cors());
     this.server.use(express.json());
-    this.server.use('/files', express.static(uploadConfig.uploadFolder));
+    this.server.use('/files', express.static(uploadConfig.directory));
   }
 
   private routes(): void {
