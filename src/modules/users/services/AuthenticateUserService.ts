@@ -1,13 +1,15 @@
 import { sign } from 'jsonwebtoken';
+import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
 import authConfig from '@config/auth';
 
-import { injectable, inject } from 'tsyringe';
-import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUserRepository';
+
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+
+import User from '../infra/typeorm/entities/User';
 
 interface IRequest {
   email: string;
@@ -55,11 +57,11 @@ class AuthenticateUserService {
     }
 
     const token = sign({}, secret, {
-      subject: user.id,
       expiresIn,
+      subject: user.id,
     });
 
-    return { user, token };
+    return { token, user };
   }
 }
 
