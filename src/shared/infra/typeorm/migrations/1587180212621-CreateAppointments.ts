@@ -8,14 +8,13 @@ export default class CreateAppointments1587180212621
 
     await queryRunner.createTable(
       new Table({
-        name: 'appointments',
         columns: [
           {
+            default: 'uuid_generate_v4()',
+            generationStrategy: 'uuid',
+            isPrimary: true,
             name: 'id',
             type: 'uuid',
-            isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
           },
           {
             name: 'provider',
@@ -26,16 +25,17 @@ export default class CreateAppointments1587180212621
             type: 'timestamp with time zone',
           },
           {
+            default: 'now()',
             name: 'created_at',
             type: 'timestamp',
-            default: 'now()',
           },
           {
+            default: 'now()',
             name: 'updated_at',
             type: 'timestamp',
-            default: 'now()',
           },
         ],
+        name: 'appointments',
       })
     );
   }

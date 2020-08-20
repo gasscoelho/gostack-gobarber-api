@@ -4,39 +4,39 @@ export default class CreateUsers1587229269797 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'users',
         columns: [
           {
+            default: 'uuid_generate_v4()',
+            generationStrategy: 'uuid',
+            isPrimary: true,
             name: 'id',
             type: 'uuid',
-            isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
           },
           {
             name: 'name',
             type: 'varchar',
           },
           {
+            isUnique: true,
             name: 'email',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'password',
             type: 'varchar',
           },
           {
+            default: 'now()',
             name: 'created_at',
             type: 'timestamp',
-            default: 'now()',
           },
           {
+            default: 'now()',
             name: 'updated_at',
             type: 'timestamp',
-            default: 'now()',
           },
         ],
+        name: 'users',
       })
     );
   }
