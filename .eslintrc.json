@@ -19,23 +19,24 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "sort-keys-fix"],
   "rules": {
+    "sort-keys-fix/sort-keys-fix": "warn",
+    "prettier/prettier": "error",
     "no-underscore-dangle": "off",
+    "no-useless-constructor": "off",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
         "argsIgnorePattern": "_"
       }
     ],
-    "@typescript-eslint/camelcase": "off",
-    "no-useless-constructor": "off",
     "@typescript-eslint/interface-name-prefix": [
       "error",
       { "prefixWithI": "always" }
     ],
-    "class-methods-use-this": "off",
-    "prettier/prettier": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
