@@ -1,10 +1,12 @@
+import { injectable, inject } from 'tsyringe';
+
 import AppError from '@shared/errors/AppError';
+
 import path from 'path';
 
-import { injectable, inject } from 'tsyringe';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
-import IUserTokensRepository from '../repositories/IUserTokensRepository';
 
+import IUserTokensRepository from '../repositories/IUserTokensRepository';
 import IUsersRepository from '../repositories/IUserRepository';
 
 interface IRequest {
@@ -41,17 +43,17 @@ class SendForgotPasswordService {
     );
 
     await this.mailProvider.sendMail({
-      to: {
-        name: user.name,
-        email: user.email,
-      },
       subject: '[GoBarber] Recuperação de Senha',
       template: {
         file: forgotPasswordTemplate,
         variables: {
+          link: `${process.env.APP_WEB_URL}/reset-password?token=${token}`,
           name: user.name,
-          link: `http://localhost:3000/reset_password?token=${token}`,
         },
+      },
+      to: {
+        email: user.email,
+        name: user.name,
       },
     });
   }
