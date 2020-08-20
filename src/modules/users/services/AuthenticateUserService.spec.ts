@@ -1,12 +1,10 @@
 import AppError from '@shared/errors/AppError';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import AuthenticateUserService from './AuthenticateUserService';
-import CreateUserService from './CreateUserService';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
-let createUserService: CreateUserService;
 let authenticateUser: AuthenticateUserService;
 
 describe('AuthenticateUser', () => {
@@ -14,18 +12,13 @@ describe('AuthenticateUser', () => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
 
-    createUserService = new CreateUserService(
-      fakeUsersRepository,
-      fakeHashProvider
-    );
-
     authenticateUser = new AuthenticateUserService(
       fakeUsersRepository,
       fakeHashProvider
     );
   });
   it('should be able to authenticate', async () => {
-    await createUserService.execute({
+    await fakeUsersRepository.create({
       name: 'Gabriel Coelho',
       email: 'gabriel.coelho@gobarber.com',
       password: '123123',
@@ -49,7 +42,7 @@ describe('AuthenticateUser', () => {
   });
 
   it('should be able to authenticate with invalid password', async () => {
-    await createUserService.execute({
+    await fakeUsersRepository.create({
       name: 'Gabriel Coelho',
       email: 'gabriel.coelho@gobarber.com',
       password: '123123',
